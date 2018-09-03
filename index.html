@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+    <head>
+        <title>☆ ~ Magic Color Grid ~ ☆</title>
+        <link rel="stylesheet" type="text/css" href="./static/style.css" />
+    </head>
+    <body>
+        <div>
+            <button onclick="createGrid(10, 10)">Créer une grille</button>
+            <button onclick="print()">Imprimer</button>
+        </div>
+
+        <div class="flex-container">
+            <div id="grid-container" style="flex-grow: 3">
+                <!--<table id="grid">
+                    <tr>
+                        <td onclick="getFocusOnTd(this);">
+							<input class="input-operation hidden" onfocus="setOperation(this)" onfocusout="confirmOperation(this);">
+							<div class="hidden"></div></td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>-->
+            </div>
+            <div style="flex-grow: 1">
+                <table id="operation-grid">
+                    <thead>
+                        <tr>
+                            <td>opération</td>
+                            <td>résultat</td>
+                            <td>couleur</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script type="text/javascript" src="./static/script.js"></script>
+    </body>
+</html>
+
+
