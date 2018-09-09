@@ -1,3 +1,11 @@
+#color-operation {
+    display: none;
+}
+
+.buttons {
+    padding: 0.5rem;
+}
+
 .flex-container {
   display: flex;
   align-content: space-between;
@@ -14,13 +22,24 @@ table {
 
 #grid td {
     width: 80px;
+    position: relative;
 }
 
-#grid td, #operation-grid td {
+#grid td input {
+    position: absolute;
+    top: 30%;
+}
+
+#grid td,
+#operation-grid td {
     border: solid 1px black;
 }
 
-#grid input, #grid div {
+#operation-grid td {
+    padding: 0.5rem;
+}
+
+#grid input {
     width: 100%;
     height: 20%;
     font-size: 120%;
@@ -31,6 +50,36 @@ table {
     border: none;
 }
 
-#grid input.hidden, #grid div.hidden {
+#grid span {
+    font-size: 120%;
+    padding: 0.5rem;
+    text-align: center;
+}
+
+#grid input.hidden, 
+#grid div.hidden {
     display: none;
+}
+
+#fieldset-color-chooser {
+    margin-top: 10rem;
+}
+
+#fieldset-color-chooser label {
+    position: absolute;
+    margin-top: -1rem;
+    background: white;
+    padding: 0 1rem;
+}
+
+#color-chooser {
+    padding: 0.5rem;
+}
+
+#color-chooser span {
+    width: 3rem;
+    height: 1.5rem;
+    border: black 1px solid;
+    display: inline-block;
+    margin-left: 0.5rem;
 }

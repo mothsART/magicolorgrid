@@ -2,29 +2,17 @@
 <html>
     <head>
         <title>☆ ~ Magic Color Grid ~ ☆</title>
-        <link rel="stylesheet" type="text/css" href="./static/style.css" />
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="./static/style.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="./static/print.css" media="print">
     </head>
     <body>
-        <div>
+        <div class="buttons">
             <button onclick="createGrid(10, 10)">Créer une grille</button>
             <button onclick="print()">Imprimer</button>
         </div>
-
         <div class="flex-container">
             <div id="grid-container" style="flex-grow: 3">
-                <!--<table id="grid">
-                    <tr>
-                        <td onclick="getFocusOnTd(this);">
-							<input class="input-operation hidden" onfocus="setOperation(this)" onfocusout="confirmOperation(this);">
-							<div class="hidden"></div></td>
-                        <td>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                </table>-->
             </div>
             <div style="flex-grow: 1">
                 <table id="operation-grid">
@@ -38,6 +26,13 @@
                     <tbody>
                     </tbody>
                 </table>
+                <fieldset id="fieldset-color-chooser">
+                    <label>Choisissez votre couleur</label>
+                    <div id="color-chooser"></div>
+                </fieldset>
+                </div>
+            </div>
+            <div id="color-operation">
             </div>
         </div>
         <script type="text/javascript" src="./static/script.js"></script>
