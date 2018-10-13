@@ -102,6 +102,31 @@ function chooseColor(element) {
         give_svg(colorSelection.color)
     );
 }
+function changeColor(element, color) {
+    "use strict";
+    color = color.rgbaString;
+    element.setAttribute(
+        "style", "background-color:" + color
+    );
+    var result = element.previousSibling.textContent;
+    element.setAttribute('data-color', color);
+    var new_color = document.getElementById(
+        'color-chooser-' + result
+    );
+    new_color.setAttribute("style", "background-color:" + color);
+    new_color.setAttribute("data-color", color);
+    var printedColor = document.getElementById(
+        'print-color-' + result
+    );
+    printedColor.setAttribute("style", "background-color:" + color);
+    var cases = document.getElementsByClassName('td-' + result);
+    for (var i = 0; i < cases.length; i++) {
+        cases[i].setAttribute(
+            "style",
+            "background-color:" + color
+        );
+    }
+}
 
 function confirmOperation(element) {
     "use strict";
@@ -114,15 +139,24 @@ function confirmOperation(element) {
     str     = str.replace('x', '*');
     var result = eval(str);
     element.nextSibling.innerHTML = operation;
+    var tdNode = element.parentNode;
     if (operation in operations) {
-        element.parentNode.setAttribute("style", "background-color:" + operations[operation]);
+        tdNode.className = "";
+        tdNode.classList.add('td-' + result);
+        tdNode.setAttribute(
+            "style",
+            "background-color:" + operations[operation]
+        );
         return;
     }
     if (!result)
         return;
+    tdNode.classList.add('td-' + result);
     var color = random_colors();
     operations[operation] = color;
-    
+
+    element.parentNode.setAttribute("style", "background-color:" + color);
+
     var tableRef = document.getElementById('operation-grid').getElementsByTagName('tbody')[0];
     var newRow   = tableRef.insertRow(tableRef.rows.length);
 
@@ -135,11 +169,27 @@ function confirmOperation(element) {
     resultCell.appendChild(resultText);
 
     var colorCell = newRow.insertCell(2);
-    element.parentNode.setAttribute("style", "background-color:" + color);
+    element.parentNode.setAttribute(
+        "style",
+        "background-color:" + color
+    );
     colorCell.setAttribute("style", "background-color:" + color);
+    colorCell.setAttribute('data-color', color);
+    var popupPicker = new Picker({
+        parent: colorCell,
+        popup: 'left',
+        color: color
+    });
+    popupPicker.onDone = function(color) {
+        changeColor(colorCell, color);
+    };
+    colorCell.onclick = function(e) {
+        popupPicker.show();
+    };
 
     var colorChooser = document.getElementById("color-chooser");
     var new_color = document.createElement("span");
+    new_color.id  = 'color-chooser-' + result;
     new_color.setAttribute("style", "background-color:" + color);
     new_color.setAttribute("data-color", color);
     new_color.setAttribute("data-operation", operation);
@@ -149,6 +199,7 @@ function confirmOperation(element) {
     var printColors = document.getElementById("color-operation");
     var colorOperation = document.createElement("div");
     colorOperation.classList.add('color-operation');
+    colorOperation.id = 'print-color-' + result;
     colorOperation.setAttribute("style", "background-color:" + color);
     var text = document.createTextNode(result);
     colorOperation.appendChild(text);
