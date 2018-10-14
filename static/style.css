@@ -40,7 +40,7 @@ table {
 }
 
 #grid input {
-    width: 100%;
+    width: calc(100% - 2px);
     height: 20%;
     font-size: 120%;
     padding: 1rem;
@@ -62,7 +62,8 @@ table {
 }
 
 #grid input.hidden, 
-#grid div.hidden {
+#grid div.hidden,
+#grid span.hidden {
     display: none;
 }
 

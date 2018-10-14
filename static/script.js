@@ -73,8 +73,13 @@ function createGrid(x, y) {
 function getFocusOnTd(element) {
     "use strict";
     if (colorSelection) {
-        element.setAttribute("style", "background-color:" + colorSelection.color);
-        element.childNodes[1].innerText = colorSelection.operation;
+        element.setAttribute(
+            "style",
+            "background-color:" + colorSelection.color
+        );
+        var operationNode = element.childNodes[1];
+        operationNode.innerText = colorSelection.operation;
+        operationNode.classList.remove('hidden');
         return;
     }
     var inputs = document.getElementsByClassName('input-operation');
