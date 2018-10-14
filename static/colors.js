@@ -92,3 +92,15 @@ for (var i = 0; i < palette.length; i++) {
 }
 
 var remaining_colors = [];
+
+function random_colors() {
+    "use strict";
+    if (remaining_colors.length == 0)
+        remaining_colors = colors;
+    var new_value = colors[
+        parseInt(Math.random() * remaining_colors.length)
+    ];
+    var index = remaining_colors.indexOf(new_value);
+    remaining_colors.splice(index, 1);
+    return new_value;
+}

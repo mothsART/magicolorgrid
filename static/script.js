@@ -1,7 +1,6 @@
 var operations = {};
 
 function give_svg(color) {
-    console.log(color);
     return 'cursor: url(\'data:image/svg+xml;utf8,'
     + '<svg xmlns=\"http://www.w3.org/2000/svg" width="48" viewBox="0 0 48 48" height="48" fill="%23FF0000">'
         + '<g>'
@@ -11,18 +10,6 @@ function give_svg(color) {
             + '1.844-2.438 2.898-2.352 1.953.16 2.993.846 2.667 3.112z" fill="' + color + '" stroke-width=".0313403"/>'
         + '</g>'
     + '</svg>\') 30 30, auto;';
-}
-
-function random_colors() {
-    "use strict";
-    if (remaining_colors.length == 0)
-        remaining_colors = colors;
-    var new_value = colors[
-        parseInt(Math.random() * remaining_colors.length)
-    ];
-    var index = remaining_colors.indexOf(new_value);
-    remaining_colors.splice(index, 1);
-    return new_value;
 }
 
 function createGrid(x, y) {
@@ -59,6 +46,7 @@ function getFocusOnTd(element) {
             "style",
             "background-color:" + colorSelection.color
         );
+        element.classList.add('td-' + colorSelection.result);
         var operationNode = element.childNodes[1];
         operationNode.innerText = colorSelection.operation;
         operationNode.classList.remove('hidden');
@@ -84,7 +72,8 @@ function chooseColor(element) {
     "use strict";
     colorSelection = {
         color:     element.getAttribute("data-color"),
-        operation: element.getAttribute("data-operation")
+        operation: element.getAttribute("data-operation"),
+        result:    element.getAttribute("data-result")
     };
     document.getElementsByTagName('body')[0].setAttribute(
         'style',
@@ -98,7 +87,8 @@ function changeColor(element, color) {
     element.setAttribute(
         "style", "background-color:" + color
     );
-    var result = element.previousSibling.textContent;
+    var result    = element.previousSibling.textContent;
+    var operation = element.previousSibling.previousSibling.textContent;
     element.setAttribute('data-color', color);
     var new_color = document.getElementById(
         'color-chooser-' + result
@@ -110,12 +100,15 @@ function changeColor(element, color) {
     );
     printedColor.setAttribute("style", "background-color:" + color);
     var cases = document.getElementsByClassName('td-' + result);
+    operations[operation] = color;
     for (var i = 0; i < cases.length; i++) {
         cases[i].setAttribute(
             "style",
             "background-color:" + color
         );
     }
+    colorSelection = null;
+    document.getElementsByTagName('body')[0].setAttribute('style', '');
 }
 
 function confirmOperation(element) {
@@ -184,6 +177,7 @@ function confirmOperation(element) {
     new_color.setAttribute("style", "background-color:" + color);
     new_color.setAttribute("data-color", color);
     new_color.setAttribute("data-operation", operation);
+    new_color.setAttribute("data-result", result);
     new_color.setAttribute("onclick", "chooseColor(this);");
     colorChooser.appendChild(new_color);
 
