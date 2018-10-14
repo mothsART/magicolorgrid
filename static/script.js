@@ -45,6 +45,8 @@ function random_colors() {
 
 function createGrid(x, y) {
     "use strict";
+    if (document.getElementById('grid'))
+        return;
     var table = document.createElement('table');
     table.id  = 'grid';
     for (var i = 0; i < y; i++) {
