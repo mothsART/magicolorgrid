@@ -12,10 +12,35 @@ function give_svg(color) {
     + '</svg>\') 30 30, auto;';
 }
 
-function createGrid(x, y) {
+function closeDialog(element) {
     "use strict";
-    if (document.getElementById('grid'))
+    element.closest('.dialog').classList.add('hidden');
+    document.getElementsByTagName('body')[0].classList.remove('mask');
+}
+
+function chooseGrid() {
+    "use strict";
+    document.getElementsByTagName('body')[0].classList.add('mask');
+    var dialog = document.getElementById('create-grid-dialog');
+    dialog.classList.remove('hidden');
+    if (!document.getElementById('grid'))
         return;
+    document.getElementById('create-warning').classList.remove('hidden');
+}
+
+function createGrid() {
+    "use strict";
+    document.getElementById('button-print').removeAttribute('disabled');
+    document.getElementsByTagName('body')[0].classList.remove('mask');
+    var dialog = document.getElementById('create-grid-dialog');
+    dialog.classList.add('hidden');
+    dialog.classList.remove('create');
+    if (document.getElementById('grid')) {
+        var grid = document.getElementById('grid');
+        grid.parentNode.removeChild(grid);
+    }
+    var x = parseInt(document.getElementById('nb-lines').value);
+    var y = parseInt(document.getElementById('nb-columns').value);
     var table = document.createElement('table');
     table.id  = 'grid';
     for (var i = 0; i < y; i++) {
@@ -115,6 +140,7 @@ function confirmOperation(element) {
     "use strict";
     if (colorSelection)
         return;
+    document.getElementById('sidebar').classList.remove('hidden');
     element.classList.add('hidden');
     element.nextSibling.classList.remove('hidden');
     var operation = element.value.replace(' ', '').replace('*', ' x ');
@@ -134,6 +160,7 @@ function confirmOperation(element) {
     }
     if (!result)
         return;
+    tdNode.classList = '';
     tdNode.classList.add('td-' + result);
     var color = random_colors();
     operations[operation] = color;
@@ -144,6 +171,8 @@ function confirmOperation(element) {
     var newRow   = tableRef.insertRow(tableRef.rows.length);
 
     var operationCell  = newRow.insertCell(0);
+    operationCell.classList.add('select');
+    operationCell.setAttribute('onclick', 'setOperation(this)');
     var operationText  = document.createTextNode(operation);
     operationCell.appendChild(operationText);
 
@@ -152,6 +181,7 @@ function confirmOperation(element) {
     resultCell.appendChild(resultText);
 
     var colorCell = newRow.insertCell(2);
+    colorCell.classList.add('select');
     element.parentNode.setAttribute(
         "style",
         "background-color:" + color
@@ -174,6 +204,7 @@ function confirmOperation(element) {
     var colorChooser = document.getElementById("color-chooser");
     var new_color = document.createElement("span");
     new_color.id  = 'color-chooser-' + result;
+    new_color.classList.add('select');
     new_color.setAttribute("style", "background-color:" + color);
     new_color.setAttribute("data-color", color);
     new_color.setAttribute("data-operation", operation);
@@ -189,4 +220,15 @@ function confirmOperation(element) {
     var text = document.createTextNode(result);
     colorOperation.appendChild(text);
     printColors.appendChild(colorOperation);
+}
+
+function setOperation(element) {
+    "use strict";
+    
+}
+
+function disableBross() {
+    "use strict";
+    colorSelection = null;
+    document.getElementsByTagName('body')[0].setAttribute('style', '');
 }

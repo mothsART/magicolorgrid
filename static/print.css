@@ -2,7 +2,8 @@
 #operation-grid, 
 #fieldset-color-chooser,
 #grid input.hidden,
-#grid div.hidden {
+#grid div.hidden,
+.dialog {
     display: none;
 }
 
