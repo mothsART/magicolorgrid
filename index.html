@@ -9,10 +9,27 @@
     </head>
     <body>
         <div class="buttons">
+            <label>Charger des exemples :
+            <select onchange="load_example(value);">
+                <option>--Aucun--</option>
+                <option value="./examples/crab.pixar">Crabe</option>
+            </select>
             <button onclick="chooseGrid()">Créer une grille</button>
             <button id="button-print" disabled="disabled" onclick="print()">
                 Imprimer
             </button>
+        </div>
+        <div id="set-operation-dialog" class="dialog hidden">
+            <div>
+                <label class="modal__close" onclick="closeDialog(this)"></label>
+                <label>Opération</label>
+                <input id="id-row-col" type="hidden">
+                <input id="set-operation" type="text" onkeypress="isEnterKey()"/>
+            </div>
+            <div class="valid">
+                <button class="cancel" onclick="closeDialog(this)">Annuler</button>
+                <button onclick="confirmOperationCloseModal()">Valider</button>
+            </div>
         </div>
         <div id="create-grid-dialog" class="dialog create hidden">
             <label class="modal__close" onclick="closeDialog(this)"></label>
@@ -62,7 +79,10 @@
             </div>
         </div>
         <script src="./static/vanilla-picker.min.js"></script>
+        <script src="./static/parseTOML.js"></script>
         <script src="./static/colors.js"></script>
         <script src="./static/script.js"></script>
+        <script src="./static/load.js"></script>
+        <script src="./static/dump.js"></script>
     </body>
 </html>

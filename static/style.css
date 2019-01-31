@@ -199,6 +199,10 @@ table {
     cursor: pointer;
 }
 
+.colorSelector #color-chooser .select {
+    cursor: inherit;
+}
+
 #disable-bross {
     width: 3rem;
     height: 1.5rem;

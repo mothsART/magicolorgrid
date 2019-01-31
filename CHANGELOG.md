@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - i18n
 - undo/redo
+- examples
+- import (png, jpeg) : with conversion
+- passage to vue.js
 
 ## [0.1] - 2018-01-26
 ### Added

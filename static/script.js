@@ -30,62 +30,37 @@ function chooseGrid() {
 
 function createGrid() {
     "use strict";
-    document.getElementById('button-print').removeAttribute('disabled');
     document.getElementsByTagName('body')[0].classList.remove('mask');
     var dialog = document.getElementById('create-grid-dialog');
     dialog.classList.add('hidden');
     dialog.classList.remove('create');
+    var x = parseInt(document.getElementById('nb-lines').value);
+    var y = parseInt(document.getElementById('nb-columns').value);
+    newGrid(x, y);
+}
+
+function newGrid(x, y) {
+    "use strict";
     if (document.getElementById('grid')) {
         var grid = document.getElementById('grid');
         grid.parentNode.removeChild(grid);
     }
-    var x = parseInt(document.getElementById('nb-lines').value);
-    var y = parseInt(document.getElementById('nb-columns').value);
     var table = document.createElement('table');
     table.id  = 'grid';
-    for (var i = 0; i < y; i++) {
+    for (var i = 1; i < y + 1; i++) {
         var tr = document.createElement('tr');
-        for (var j = 0; j < x; j++) {
+        for (var j = 1; j < x + 1; j++) {
             var td = document.createElement('td');
+            td.id = 'row-' + i + '-col-' + j;
             td.setAttribute('onclick', 'getFocusOnTd(this)');
-            var input = document.createElement('input');
-            input.classList.add('input-operation');
-            input.classList.add('hidden');
-            input.setAttribute('onfocus', 'setOperation(this)');
-            input.setAttribute('onfocusout', 'confirmOperation(this)');
-            td.appendChild(input);
             var span = document.createElement('span');
-            span.classList.add('hidden');
             td.appendChild(span);
             tr.appendChild(td);
         }
         table.appendChild(tr);
     }
     document.getElementById('grid-container').appendChild(table);
-}
-
-function getFocusOnTd(element) {
-    "use strict";
-    if (colorSelection) {
-        element.setAttribute(
-            "style",
-            "background-color:" + colorSelection.color
-        );
-        element.classList.add('td-' + colorSelection.result);
-        var operationNode = element.childNodes[1];
-        operationNode.innerText = colorSelection.operation;
-        operationNode.classList.remove('hidden');
-        return;
-    }
-    var inputs = document.getElementsByClassName('input-operation');
-    for (var i = 0, len = inputs.length; i < len; i++) {
-        inputs[i].classList.add('hidden');
-    }
-    var input = element.childNodes[0];
-    var span  = element.childNodes[1];
-    input.classList.remove('hidden');
-    span.classList.add('hidden');
-    input.focus();
+    document.getElementById('button-print').removeAttribute('disabled');
 }
 
 function setOperation(element) {
@@ -100,10 +75,12 @@ function chooseColor(element) {
         operation: element.getAttribute("data-operation"),
         result:    element.getAttribute("data-result")
     };
-    document.getElementsByTagName('body')[0].setAttribute(
+    var body = document.getElementsByTagName('body')[0];
+    body.setAttribute(
         'style',
         give_svg(colorSelection.color)
     );
+    body.classList.add('colorSelector');
 }
 
 function changeColor(element, color) {
@@ -136,19 +113,15 @@ function changeColor(element, color) {
     document.getElementsByTagName('body')[0].setAttribute('style', '');
 }
 
-function confirmOperation(element) {
+function confirmOperation(value, tdNode, importResult, importColor) {
     "use strict";
     if (colorSelection)
         return;
     document.getElementById('sidebar').classList.remove('hidden');
-    element.classList.add('hidden');
-    element.nextSibling.classList.remove('hidden');
-    var operation = element.value.replace(' ', '').replace('*', ' x ');
-    var str = element.value.replace('/[^-()\d/*+.]/g', '');
+    var operation = value.replace(' ', '').replace('*', ' x ');
+    var str = value.replace('/[^-()\d/*+.]/g', '');
     str     = str.replace('x', '*');
     var result = eval(str);
-    element.nextSibling.innerHTML = operation;
-    var tdNode = element.parentNode;
     if (operation in operations) {
         tdNode.className = "";
         tdNode.classList.add('td-' + result);
@@ -156,16 +129,20 @@ function confirmOperation(element) {
             "style",
             "background-color:" + operations[operation]
         );
+        var operationNode = tdNode.getElementsByTagName('span')[0];
+        operationNode.innerText = operation;
         return;
     }
     if (!result)
         return;
     tdNode.classList = '';
     tdNode.classList.add('td-' + result);
-    var color = random_colors();
+    var operationNode = tdNode.getElementsByTagName('span')[0];
+    operationNode.innerText = operation;
+    var color = importColor;
+    if (!importColor)
+        random_colors();
     operations[operation] = color;
-
-    element.parentNode.setAttribute("style", "background-color:" + color);
 
     var tableRef = document.getElementById('operation-grid').getElementsByTagName('tbody')[0];
     var newRow   = tableRef.insertRow(tableRef.rows.length);
@@ -182,7 +159,7 @@ function confirmOperation(element) {
 
     var colorCell = newRow.insertCell(2);
     colorCell.classList.add('select');
-    element.parentNode.setAttribute(
+    tdNode.setAttribute(
         "style",
         "background-color:" + color
     );
@@ -222,9 +199,50 @@ function confirmOperation(element) {
     printColors.appendChild(colorOperation);
 }
 
+function confirmOperationCloseModal() {
+    "use strict";
+    var element = document.getElementById('set-operation');
+    document.getElementsByTagName('body')[0].classList.add('mask');
+    var dialog = document.getElementById('set-operation-dialog');
+    var tdNode = document.getElementById(
+        document.getElementById('id-row-col').value
+    );
+    dialog.classList.remove('hidden');
+    confirmOperation(element.value, tdNode);
+    closeDialog(dialog);
+}
+
+function isEnterKey() {
+    "use strict";
+    if(event.key == 'Enter')
+        confirmOperationCloseModal();
+}
+
 function setOperation(element) {
     "use strict";
-    
+    document.getElementsByTagName('body')[0].classList.add('mask');
+    var dialog = document.getElementById('set-operation-dialog');
+    document.getElementById('id-row-col').setAttribute(
+        'value',
+        element.id
+    );
+    dialog.classList.remove('hidden');
+    document.getElementById('set-operation').focus();
+}
+
+function getFocusOnTd(element) {
+    "use strict";
+    if (colorSelection) {
+        element.setAttribute(
+            "style",
+            "background-color:" + colorSelection.color
+        );
+        element.classList.add('td-' + colorSelection.result);
+        var operationNode = element.getElementsByTagName('span')[0];
+        operationNode.innerText = colorSelection.operation;
+        return;
+    }
+    setOperation(element);
 }
 
 function disableBross() {

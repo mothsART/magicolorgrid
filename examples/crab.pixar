@@ -1,0 +1,26 @@
+[op1]
+   operation = "1x7"
+   result = "7"
+   color = "rgb(208,224,227)"
+
+[op2]
+    operation = "4x7"
+    result = "28"
+    color = "rgb(255, 0, 20)"
+
+[grid]
+    width = 10
+    height = 10
+
+[row1]
+    col1  = op2
+    col2  = op1
+    col3  = op2
+    col4  = op1
+    col5  = op1    
+    col6  = op1
+    col7  = op1
+    col8  = op2
+    col9  = op1
+    col10 = op2
+
