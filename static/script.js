@@ -47,6 +47,19 @@ function createGrid() {
     newGrid(x, y);
 }
 
+function isTooDark(hslString) {
+    "use strict";
+    if (!hslString)
+        return false;
+    var luminosity = parseInt(hslString.substring(
+        hslString.lastIndexOf(',') + 1,
+        hslString.lastIndexOf('%')
+    ));
+    if (luminosity < 50)
+        return true;
+    return false;
+}
+
 function newGrid(x, y) {
     "use strict";
     file["grid"]["width"]  = x;
@@ -98,7 +111,7 @@ function chooseColor(element) {
 
 function changeColor(element, color) {
     "use strict";
-    color = color.rgbaString;
+    color = color.hslString;
     element.setAttribute(
         "style", "background-color:" + color
     );
@@ -120,7 +133,12 @@ function changeColor(element, color) {
         "result": file.operations[operation].result,
         "color": color
     };
+    var _isTooDark = isTooDark(color);
     for (var i = 0; i < cases.length; i++) {
+        if (_isTooDark)
+            cases[i].classList.add('white');
+        else
+            cases[i].classList.remove('white');
         cases[i].setAttribute(
             "style",
             "background-color:" + color
@@ -155,6 +173,8 @@ function confirmOperation(value, tdNode, importResult, importColor) {
         file["rows"]["row" + row_id]["col" + col_id] = op.name;
         tdNode.className = "";
         tdNode.classList.add('td-' + result);
+        if (isTooDark(op.color))
+            tdNode.classList.add('white');
         tdNode.setAttribute(
             "style",
             "background-color:" + op.color
@@ -194,6 +214,8 @@ function confirmOperation(value, tdNode, importResult, importColor) {
 
     var colorCell = newRow.insertCell(2);
     colorCell.classList.add('select');
+    if (isTooDark(color))
+        tdNode.classList.add('white');
     tdNode.setAttribute(
         "style",
         "background-color:" + color
@@ -229,6 +251,8 @@ function confirmOperation(value, tdNode, importResult, importColor) {
     var colorOperation = document.createElement("div");
     colorOperation.classList.add('color-operation');
     colorOperation.id = 'print-color-' + result;
+    if (isTooDark(color))
+        colorOperation.classList.add('white');
     colorOperation.setAttribute("style", "background-color:" + color);
     var text = document.createTextNode(result);
     colorOperation.appendChild(text);
@@ -279,6 +303,10 @@ function getFocusOnTd(element) {
             file["rows"]["row" + row_id]["col" + col_id] = [];
         var op = file["operations"][colorSelection.operation];
         file["rows"]["row" + row_id]["col" + col_id] = op.name;
+        if (isTooDark(colorSelection.color))
+            element.classList.add('white');
+        else
+            element.classList.remove('white');
         element.setAttribute(
             "style",
             "background-color:" + colorSelection.color

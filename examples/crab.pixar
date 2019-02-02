@@ -1,17 +1,17 @@
 [op1]
     operation = "4x7"
     result = "28"
-    color = "rgb(255, 0, 20)"
+    color = "hsl(355.29411764705884,99.1304347826087%,51.73913043478261%)"
 
 [op2]
     operation = "1x7"
     result = "7"
-    color = "rgba(30,174,201,1)"
+    color = "hsl(189.4736842105263,82.17391304347827%,55.65217391304348%)"
 
 [op3]
     operation = "3x7"
     result = "21"
-    color = "rgba(27,32,33,1)"
+    color = "hsl(190,20.869565217391305%,1.30434782608696%)"
 
 [grid]
     width = 10
@@ -64,12 +64,12 @@
 [row5]
     col1 = op1
     col2 = op2
+    col4 = op3
     col5 = op2
     col6 = op2
+    col8 = op3
     col9 = op2
     col10 = op1
-    col4 = op3
-    col8 = op3
 
 [row6]
     col1 = op1

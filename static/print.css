@@ -52,3 +52,7 @@ table#grid {
     display: inline-block;
     text-align: center;
 }
+
+#color-operation .color-operation.white {
+   color: white;
+}
