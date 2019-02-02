@@ -1,6 +1,14 @@
-var operations = {};
+var file = {
+    "grid": {
+        "width": 0,
+        "height": 0
+    },
+    "operations": {},
+    "rows": []
+}
 
 function give_svg(color) {
+    "use strict";
     return 'cursor: url(\'data:image/svg+xml;utf8,'
     + '<svg xmlns=\"http://www.w3.org/2000/svg" width="48" viewBox="0 0 48 48" height="48" fill="%23FF0000">'
         + '<g>'
@@ -41,6 +49,8 @@ function createGrid() {
 
 function newGrid(x, y) {
     "use strict";
+    file["grid"]["width"]  = x;
+    file["grid"]["height"] = y;
     if (document.getElementById('grid')) {
         var grid = document.getElementById('grid');
         grid.parentNode.removeChild(grid);
@@ -52,6 +62,8 @@ function newGrid(x, y) {
         for (var j = 1; j < x + 1; j++) {
             var td = document.createElement('td');
             td.id = 'row-' + i + '-col-' + j;
+            td.setAttribute('data-row', i);
+            td.setAttribute('data-col', j);
             td.setAttribute('onclick', 'getFocusOnTd(this)');
             var span = document.createElement('span');
             td.appendChild(span);
@@ -61,6 +73,7 @@ function newGrid(x, y) {
     }
     document.getElementById('grid-container').appendChild(table);
     document.getElementById('button-print').removeAttribute('disabled');
+    document.getElementById('button-save').removeAttribute('disabled');
 }
 
 function setOperation(element) {
@@ -102,7 +115,11 @@ function changeColor(element, color) {
     );
     printedColor.setAttribute("style", "background-color:" + color);
     var cases = document.getElementsByClassName('td-' + result);
-    operations[operation] = color;
+    file["operations"][operation] = {
+        "name": file.operations[operation].name,
+        "result": file.operations[operation].result,
+        "color": color
+    };
     for (var i = 0; i < cases.length; i++) {
         cases[i].setAttribute(
             "style",
@@ -118,32 +135,50 @@ function confirmOperation(value, tdNode, importResult, importColor) {
     if (colorSelection)
         return;
     document.getElementById('sidebar').classList.remove('hidden');
-    var operation = value.replace(' ', '').replace('*', ' x ');
+    var operation = value.replace(' ', '').replace('*', 'x');
     var str = value.replace('/[^-()\d/*+.]/g', '');
     str     = str.replace('x', '*');
     var result = eval(str);
-    if (operation in operations) {
+    if (!result)
+        return;
+    var id     = tdNode.id;
+    var row_id = parseInt(tdNode.getAttribute('data-row'));
+    var row    = 'row' + row_id;
+    var col_id = parseInt(tdNode.getAttribute('data-col'));
+    var col    = 'col' + col_id;
+    if (!("row" + row_id in file["rows"]))
+        file["rows"]["row" + row_id] = [];
+    if (!("col" + col_id in file["rows"]["row" + row_id]))
+        file["rows"]["row" + row_id]["col" + col_id] = [];
+    if (operation in file["operations"]) {
+        var op = file["operations"][operation];
+        file["rows"]["row" + row_id]["col" + col_id] = op.name;
         tdNode.className = "";
         tdNode.classList.add('td-' + result);
         tdNode.setAttribute(
             "style",
-            "background-color:" + operations[operation]
+            "background-color:" + op.color
         );
         var operationNode = tdNode.getElementsByTagName('span')[0];
         operationNode.innerText = operation;
         return;
     }
-    if (!result)
-        return;
     tdNode.classList = '';
     tdNode.classList.add('td-' + result);
     var operationNode = tdNode.getElementsByTagName('span')[0];
     operationNode.innerText = operation;
     var color = importColor;
     if (!importColor)
-        random_colors();
-    operations[operation] = color;
+        color = random_colors();
 
+    var op_length = Object.keys(file['operations']).length + 1;
+    file["operations"][operation] = {
+        "name": "op" + op_length,
+        "result": result,
+        "color": color
+    };
+    file["rows"]["row" + row_id]["col" + col_id] = "op" + op_length;
+    
     var tableRef = document.getElementById('operation-grid').getElementsByTagName('tbody')[0];
     var newRow   = tableRef.insertRow(tableRef.rows.length);
 
@@ -165,6 +200,7 @@ function confirmOperation(value, tdNode, importResult, importColor) {
     );
     colorCell.setAttribute("style", "background-color:" + color);
     colorCell.setAttribute('data-color', color);
+    
     var popupPicker = new Picker({
         parent: colorCell,
         popup: 'left',
@@ -233,6 +269,16 @@ function setOperation(element) {
 function getFocusOnTd(element) {
     "use strict";
     if (colorSelection) {
+        var row_id = parseInt(element.getAttribute('data-row'));
+        var row    = 'row' + row_id;
+        var col_id = parseInt(element.getAttribute('data-col'));
+        var col    = 'col' + col_id;
+        if (!("row" + row_id in file["rows"]))
+            file["rows"]["row" + row_id] = [];
+        if (!("col" + col_id in file["rows"]["row" + row_id]))
+            file["rows"]["row" + row_id]["col" + col_id] = [];
+        var op = file["operations"][colorSelection.operation];
+        file["rows"]["row" + row_id]["col" + col_id] = op.name;
         element.setAttribute(
             "style",
             "background-color:" + colorSelection.color
@@ -243,6 +289,10 @@ function getFocusOnTd(element) {
         return;
     }
     setOperation(element);
+}
+
+function erase() {
+    "use strict";
 }
 
 function disableBross() {

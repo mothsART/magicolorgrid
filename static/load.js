@@ -2,7 +2,7 @@ function load_file(stream) {
     "use strict";
     var c = marktytoml(stream);
     newGrid(c.grid.width, c.grid.height);
-    for (var i = 0, lenI = c.grid.height + 1; i < lenI; i++) {
+    for (var i = 1, lenI = c.grid.height + 1; i < lenI; i++) {
         if (('row' + i) in c) {
             for (var j = 0, lenJ = c.grid.width + 1; j < lenJ; j++) {
                 if (('col' + j) in c['row' + i ]) {

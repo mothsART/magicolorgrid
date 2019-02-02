@@ -181,6 +181,7 @@ table {
     margin-top: -1rem;
     background: white;
     padding: 0 1rem;
+    cursor: inherit;
 }
 
 #color-chooser {

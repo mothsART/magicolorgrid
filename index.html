@@ -18,6 +18,9 @@
             <button id="button-print" disabled="disabled" onclick="print()">
                 Imprimer
             </button>
+            <button id="button-save" disabled="disabled" onclick="save()">
+                Sauvegarder
+            </button>
         </div>
         <div id="set-operation-dialog" class="dialog hidden">
             <div>
@@ -67,6 +70,10 @@
                 <fieldset id="fieldset-color-chooser">
                     <label>Choisissez votre couleur</label>
                     <div id="color-chooser">
+                        <button id="eraser"
+                                onclick="erase()">
+                            Gomme
+                        </button>
                         <div id="disable-bross"
                              class="select"
                              onclick="disableBross()">
@@ -78,11 +85,12 @@
             <div id="color-operation">
             </div>
         </div>
+        <script src="./static/FileSaver.min.js"></script>
         <script src="./static/vanilla-picker.min.js"></script>
         <script src="./static/parseTOML.js"></script>
         <script src="./static/colors.js"></script>
         <script src="./static/script.js"></script>
         <script src="./static/load.js"></script>
-        <script src="./static/dump.js"></script>
+        <script src="./static/export.js"></script>
     </body>
 </html>
