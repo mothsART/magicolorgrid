@@ -37,7 +37,7 @@ table#grid {
 
 #color-operation {
     display: block;
-    margin: 1.5cm;
+    margin: 1cm;
     height: 5cm;
     width:  15cm;
 }
@@ -48,6 +48,7 @@ table#grid {
     height: 0.5cm;
     width: 1cm;
     padding: 0.5cm;
+    margin-top: 0.5cm;
     margin-left: 0.5cm;
     display: inline-block;
     text-align: center;
