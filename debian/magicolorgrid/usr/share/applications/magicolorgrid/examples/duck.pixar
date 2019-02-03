@@ -1,0 +1,282 @@
+[op1]
+    operation = "1x4"
+    result = "4"
+    color = "hsl(192.52173913043478,100%,40%)"
+
+[op2]
+    operation = "1x8"
+    result = "8"
+    color = "rgb(7,55,99)"
+
+[op3]
+    operation = "1x16"
+    result = "16"
+    color = "rgb(243,243,243)"
+
+[op4]
+    operation = "1x9"
+    result = "9"
+    color = "hsl(44.70588235294116,92.17391304347827%,64.34782608695653%)"
+
+[op5]
+    operation = "1x3"
+    result = "3"
+    color = "hsl(30.32258064516128,100%,0%)"
+
+[op6]
+    operation = "1x6"
+    result = "6"
+    color = "hsl(14.08695652173913,82.6086956521739%,51.304347826086946%)"
+
+[grid]
+    width = 15
+    height = 15
+
+[row1]
+    col1 = op1
+    col2 = op1
+    col3 = op1
+    col4 = op1
+    col5 = op1
+    col7 = op1
+    col6 = op1
+    col10 = op1
+    col8 = op1
+    col9 = op1
+    col11 = op1
+    col12 = op1
+    col13 = op1
+    col14 = op1
+    col15 = op1
+
+[row2]
+    col1 = op1
+    col15 = op1
+    col14 = op1
+    col12 = op1
+    col13 = op1
+    col11 = op1
+    col10 = op1
+    col9 = op1
+    col8 = op1
+    col6 = op1
+    col7 = op1
+    col5 = op1
+    col4 = op1
+    col3 = op1
+    col2 = op1
+
+[row3]
+    col2 = op1
+    col1 = op1
+    col15 = op1
+    col11 = op1
+    col10 = op1
+    col12 = op1
+    col13 = op1
+    col14 = op1
+    col9 = op1
+    col4 = op1
+    col3 = op1
+    col8 = op4
+    col7 = op4
+    col6 = op4
+    col5 = op4
+
+[row4]
+    col1 = op1
+    col15 = op1
+    col10 = op1
+    col11 = op1
+    col12 = op1
+    col14 = op1
+    col13 = op1
+    col3 = op1
+    col2 = op1
+    col9 = op4
+    col5 = op4
+    col4 = op4
+    col8 = op4
+    col7 = op4
+    col6 = op4
+
+[row11]
+    col15 = op1
+    col14 = op4
+    col13 = op4
+    col12 = op4
+    col11 = op4
+    col9 = op4
+    col8 = op4
+    col7 = op4
+    col6 = op4
+    col5 = op4
+    col4 = op4
+    col1 = op1
+    col2 = op1
+    col3 = op1
+
+[row10]
+    col15 = op1
+    col14 = op4
+    col13 = op4
+    col12 = op4
+    col8 = op4
+    col7 = op4
+    col5 = op4
+    col4 = op4
+    col6 = op4
+    col2 = op1
+    col1 = op1
+    col3 = op1
+
+[row8]
+    col15 = op1
+    col14 = op4
+    col13 = op4
+    col12 = op4
+    col11 = op4
+    col10 = op4
+    col9 = op4
+    col5 = op4
+    col6 = op4
+    col7 = op4
+    col8 = op1
+    col1 = op1
+    col4 = op1
+    col3 = op1
+    col2 = op1
+
+[row9]
+    col15 = op1
+    col14 = op4
+    col10 = op4
+    col9 = op4
+    col11 = op4
+    col13 = op4
+    col7 = op4
+    col4 = op4
+    col6 = op4
+    col5 = op4
+    col1 = op1
+    col3 = op1
+    col2 = op1
+
+[row7]
+    col15 = op1
+    col14 = op4
+    col12 = op4
+    col11 = op4
+    col10 = op4
+    col9 = op1
+    col13 = op1
+    col1 = op1
+    col8 = op4
+    col7 = op4
+    col6 = op4
+    col3 = op6
+    col5 = op6
+    col4 = op6
+    col2 = op1
+
+[row6]
+    col15 = op1
+    col11 = op1
+    col10 = op1
+    col14 = op1
+    col13 = op1
+    col12 = op1
+    col1 = op1
+    col9 = op4
+    col5 = op4
+    col6 = op4
+    col7 = op4
+    col8 = op4
+    col4 = op6
+    col3 = op6
+    col2 = op6
+
+[row5]
+    col15 = op1
+    col10 = op1
+    col11 = op1
+    col12 = op1
+    col14 = op1
+    col13 = op1
+    col3 = op1
+    col2 = op1
+    col1 = op1
+    col9 = op4
+    col6 = op5
+    col5 = op4
+    col8 = op4
+    col7 = op4
+    col4 = op6
+
+[row12]
+    col15 = op2
+    col2 = op2
+    col1 = op2
+    col3 = op2
+    col4 = op2
+    col14 = op2
+    col13 = op4
+    col5 = op4
+    col12 = op4
+    col11 = op4
+    col10 = op4
+    col9 = op4
+    col8 = op4
+    col7 = op4
+    col6 = op4
+
+[row13]
+    col15 = op2
+    col1 = op2
+    col4 = op2
+    col5 = op2
+    col3 = op2
+    col2 = op2
+    col14 = op2
+    col13 = op2
+    col12 = op4
+    col11 = op4
+    col9 = op4
+    col8 = op4
+    col7 = op4
+    col6 = op4
+    col10 = op4
+
+[row14]
+    col15 = op2
+    col1 = op2
+    col3 = op2
+    col4 = op2
+    col6 = op2
+    col9 = op2
+    col14 = op2
+    col13 = op2
+    col12 = op2
+    col11 = op2
+    col10 = op2
+    col8 = op2
+    col7 = op2
+    col2 = op2
+    col5 = op2
+
+[row15]
+    col15 = op2
+    col14 = op2
+    col13 = op2
+    col2 = op2
+    col1 = op2
+    col4 = op2
+    col3 = op2
+    col6 = op2
+    col5 = op2
+    col8 = op2
+    col7 = op2
+    col9 = op2
+    col11 = op2
+    col12 = op2
+    col10 = op2

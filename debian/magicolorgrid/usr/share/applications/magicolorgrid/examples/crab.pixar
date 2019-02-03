@@ -1,0 +1,132 @@
+[op1]
+    operation = "4x7"
+    result = "28"
+    color = "hsl(355.29411764705884,99.1304347826087%,51.73913043478261%)"
+
+[op2]
+    operation = "1x7"
+    result = "7"
+    color = "hsl(189.4736842105263,82.17391304347827%,55.65217391304348%)"
+
+[op3]
+    operation = "3x7"
+    result = "21"
+    color = "hsl(190,20.869565217391305%,1.30434782608696%)"
+
+[grid]
+    width = 10
+    height = 10
+
+[row1]
+    col1 = op1
+    col2 = op2
+    col3 = op1
+    col4 = op2
+    col5 = op2
+    col6 = op2
+    col7 = op2
+    col8 = op1
+    col9 = op2
+    col10 = op1
+
+[row2]
+    col1 = op1
+    col2 = op1
+    col3 = op2
+    col4 = op2
+    col5 = op2
+    col6 = op2
+    col7 = op2
+    col8 = op2
+    col9 = op1
+    col10 = op1
+
+[row3]
+    col1 = op1
+    col2 = op2
+    col3 = op2
+    col4 = op2
+    col5 = op2
+    col6 = op2
+    col7 = op2
+    col8 = op2
+    col9 = op2
+    col10 = op1
+
+[row4]
+    col1 = op1
+    col2 = op2
+    col5 = op2
+    col6 = op2
+    col9 = op2
+    col10 = op1
+
+[row5]
+    col1 = op1
+    col2 = op2
+    col4 = op3
+    col5 = op2
+    col6 = op2
+    col8 = op3
+    col9 = op2
+    col10 = op1
+
+[row6]
+    col1 = op1
+    col2 = op1
+    col3 = op1
+    col4 = op1
+    col5 = op1
+    col6 = op1
+    col7 = op1
+    col8 = op1
+    col9 = op1
+    col10 = op1
+
+[row7]
+    col1 = op2
+    col2 = op2
+    col3 = op1
+    col4 = op1
+    col5 = op1
+    col6 = op1
+    col7 = op1
+    col8 = op1
+    col9 = op2
+    col10 = op2
+
+[row8]
+    col1 = op2
+    col2 = op2
+    col3 = op1
+    col4 = op1
+    col5 = op1
+    col6 = op1
+    col7 = op1
+    col8 = op1
+    col9 = op2
+    col10 = op2
+
+[row9]
+    col1 = op2
+    col2 = op2
+    col3 = op1
+    col4 = op1
+    col5 = op1
+    col6 = op1
+    col7 = op1
+    col8 = op1
+    col9 = op2
+    col10 = op2
+
+[row10]
+    col1 = op2
+    col2 = op1
+    col3 = op2
+    col4 = op1
+    col5 = op2
+    col6 = op2
+    col7 = op1
+    col8 = op2
+    col9 = op1
+    col10 = op2

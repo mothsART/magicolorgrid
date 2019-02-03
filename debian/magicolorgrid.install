@@ -1,0 +1,7 @@
+debian/magicolorgrid.desktop          usr/share/applications
+magicolorgrid           usr/bin/
+favicon.png             usr/share/applications/magicolorgrid
+index.html              usr/share/applications/magicolorgrid
+examples/crab.pixar     usr/share/applications/magicolorgrid/examples
+examples/duck.pixar     usr/share/applications/magicolorgrid/examples
+static/*                usr/share/applications/magicolorgrid/static

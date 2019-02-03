@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# coding: utf8
+
 def rgb_to_hsv(r, g, b):
     r, g, b = r/255.0, g/255.0, b/255.0
     mx = max(r, g, b)

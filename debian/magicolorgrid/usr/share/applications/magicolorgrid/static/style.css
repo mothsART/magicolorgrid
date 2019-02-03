@@ -1,0 +1,240 @@
+body {
+    margin: 0;
+}
+
+body.mask:before {
+    content: '';
+    background: grey;
+    opacity: .9;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hidden {
+    display: none;
+}
+
+.dialog {
+    background: white;
+    position: absolute;
+    z-index: 2;
+    box-shadow: 1px 1px 12px #555;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: .5rem;
+}
+
+.modal__close {
+    position: absolute;
+    right: -1.2em;
+    top: -1.5em;
+    width: 1.1em;
+    height: 1.1em;
+    cursor: pointer;
+    background: white;
+    padding: 0.5rem;
+    border-radius: 1rem;
+}
+
+.modal__close:after,
+.modal__close:before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 1.5em;
+    background: #ccc;
+    display: block;
+    transform: rotate(45deg);
+    left: 50%;
+    margin: .3rem 0 0 -1px;
+    top: 0;
+}
+
+.modal__close:hover:after,
+.modal__close:hover:before {
+    background: #aaa;
+}
+
+.modal__close:before {
+  transform: rotate(-45deg);
+}
+
+.dialog.create .modal__close,
+.dialog.create .warning,
+.dialog.create .cancel {
+    display: none;
+}
+
+.dialog .cancel {
+    margin-right: .5rem;
+}
+
+.dialog .warning {
+    background: #ff851b;
+    color: white;
+    padding: .5rem;
+    display: block;
+    margin-bottom: .5rem;
+}
+
+.dialog > div {
+    display: flex;
+    justify-content: space-between;
+    padding: .2rem;
+}
+
+.dialog input {
+    margin-left: .5rem;
+    border: solid 1px grey;
+}
+
+.dialog > div.valid {
+    justify-content: flex-end;
+}
+
+#color-operation {
+    display: none;
+}
+
+.buttons {
+    padding: .5rem;
+    height: 2rem;
+}
+
+.flex-container {
+    display: flex;
+    align-content: space-between;
+    padding: .5rem;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+#grid {
+    width: calc(100vh - 4rem);
+    height: calc(100vh - 4rem);
+}
+
+#grid td {
+    width: 80px;
+    position: relative;
+}
+
+#grid td input {
+    position: absolute;
+    top: 30%;
+}
+
+#grid td,
+#operation-grid td {
+    border: solid 1px black;
+}
+
+#grid td.white {
+    color: white;
+}
+
+#operation-grid td {
+    padding: 0.5rem;
+    text-align: center;
+}
+
+#operation-grid td.select {
+    cursor: pointer;
+}
+
+#grid input {
+    width: calc(100% - 2px);
+    height: 20%;
+    font-size: 120%;
+    padding: 1rem;
+    text-align: center;
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+}
+
+#grid span {
+    font-size: 120%;
+    padding: 0.5rem;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    margin-top: -25%;
+}
+
+#grid input.hidden, 
+#grid div.hidden,
+#grid span.hidden {
+    display: none;
+}
+
+#fieldset-color-chooser {
+    margin-top: 10rem;
+}
+
+#fieldset-color-chooser label {
+    position: absolute;
+    margin-top: -1rem;
+    background: white;
+    padding: 0 1rem;
+    cursor: inherit;
+}
+
+#color-chooser {
+    padding: 0.5rem;
+}
+
+#color-chooser span {
+    width: 3rem;
+    height: 1.5rem;
+    border: black 1px solid;
+    display: inline-block;
+    margin-left: 0.5rem;
+}
+
+#color-chooser .select {
+    cursor: pointer;
+}
+
+.colorSelector #color-chooser .select {
+    cursor: inherit;
+}
+
+#disable-bross {
+    width: 3rem;
+    height: 1.5rem;
+    border: black 1px solid;
+    display: inline-block;
+    margin-left: 0.5rem;
+    background: white;
+}
+
+#disable-bross:before,
+#disable-bross:after {
+    content: "";
+    width: 3rem;
+    height: 1.5rem;
+    border-bottom: 1px solid red;
+    transform:
+        translateY(-.7rem)
+        translateX(.3rem)
+        rotate(25deg)
+    ;
+    position: absolute;
+}
+
+#disable-bross:after {
+    transform:
+        translateY(-.7rem)
+        translateX(-.3rem)
+        rotate(-25deg)
+    ;
+}

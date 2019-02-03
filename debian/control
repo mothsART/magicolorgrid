@@ -1,0 +1,16 @@
+Source: magicolorgrid
+Section: education
+Version: 0.1
+Priority: extra
+Maintainer: Ferry Jérémie <jerem.ferry@gmail.com>
+Build-Depends: debhelper (>= 9)
+Homepage: https://mothsart.github.io/labo/frontend/magicolorgrid/
+
+Package: magicolorgrid
+Version: 0.1
+Architecture: all
+Maintainer: Ferry Jérémie <jerem.ferry@gmail.com>
+Depends: firefox | firefox-esr,
+ ${misc:Depends}
+Homepage: https://mothsart.github.io/labo/frontend/magicolorgrid/
+Description: Create a magic color grid

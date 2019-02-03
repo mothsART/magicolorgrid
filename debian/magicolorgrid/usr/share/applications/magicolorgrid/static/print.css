@@ -1,0 +1,59 @@
+.buttons, 
+#operation-grid, 
+#fieldset-color-chooser,
+#grid input.hidden,
+#grid div.hidden,
+.dialog {
+    display: none;
+}
+
+table#grid {
+    margin: 1.5cm;
+    width: 15cm;
+    height: 15cm;
+    border-collapse: collapse;
+}
+
+#grid td {
+    width: 1.5cm;
+    height: 1.5cm;
+    position: relative;
+    background-color: white !important;
+    position: static;
+}
+
+#grid td {
+    border: solid 0.05cm black;
+}
+
+#grid span {
+    font-size: 0.3cm;
+    padding: 0;
+    text-align: center;
+    position: relative;
+    width: 1.5cm;
+    display: block;
+}
+
+#color-operation {
+    display: block;
+    margin: 1cm;
+    height: 5cm;
+    width:  15cm;
+}
+
+#color-operation .color-operation {
+    border: solid 0.05cm black;
+    border-radius: 1cm;
+    height: 0.5cm;
+    width: 1cm;
+    padding: 0.5cm;
+    margin-top: 0.5cm;
+    margin-left: 0.5cm;
+    display: inline-block;
+    text-align: center;
+}
+
+#color-operation .color-operation.white {
+   color: white;
+}

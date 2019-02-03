@@ -1,0 +1,10 @@
+Package: magicolorgrid
+Version: 0.1
+Architecture: all
+Maintainer: Ferry Jérémie <jerem.ferry@gmail.com>
+Installed-Size: 78
+Depends: firefox | firefox-esr
+Section: education
+Priority: extra
+Homepage: https://mothsart.github.io/labo/frontend/magicolorgrid/
+Description: Create a magic color grid

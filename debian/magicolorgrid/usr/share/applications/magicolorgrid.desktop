@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Name=MagicolorGrid
+Comment=Create a magic color grid
+Exec=magicolorgrid
+Icon=/usr/share/applications/magicolorgrid/favicon.png
+Terminal=false
+Type=Application
+Categories=Graphics;Illustration;
+Keywords=svg;interactive;education;
+Name[fr_FR]=magicolorgrid.desktop
